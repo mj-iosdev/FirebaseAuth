@@ -27,3 +27,10 @@ This site was built using [AngularFire](https://github.com/angular/angularfire).
   messagingSenderId: ''
 };
 ``` 
+
+## To do
+
+- [x] Add Authentication with Email and Password
+- [ ] Add Authentication with Facebook
+- [ ] Add Authentication with Google
+- [ ] Add Authentication with twitter
