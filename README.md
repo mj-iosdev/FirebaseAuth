@@ -5,7 +5,7 @@ This site was built using [AngularFire](https://github.com/angular/angularfire).
 
 ## How to use
 
-1. To run the application
+1. To run the project
   
   ```
   npm install
