@@ -1,5 +1,5 @@
 # FirebaseAuth
-This is a demo project with use of AngularFire to Authenticate Firebase User with Email
+This is a demo project with use of AngularFire to Authenticate Firebase User with Email and Password
 
 This site was built using [AngularFire](https://github.com/angular/angularfire).
 
