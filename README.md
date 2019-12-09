@@ -33,4 +33,4 @@ This project was built using [AngularFire](https://github.com/angular/angularfir
 - [x] Add Authentication with Email and Password
 - [ ] Add Authentication with Facebook
 - [ ] Add Authentication with Google
-- [ ] Add Authentication with twitter
+- [ ] Add Authentication with Twitter
