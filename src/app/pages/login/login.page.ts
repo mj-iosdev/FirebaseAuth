@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, AlertController } from "@ionic/angular";
+import { SocialAuthService } from 'src/app/services/social-auth/social-auth.service';
 
 @Component({
   selector: "app-login",
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
     private firebaseAuthService: FirebaseAuthService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private socialAuthService: SocialAuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ["", Validators.compose([Validators.required, Validators.email])],
@@ -70,5 +72,21 @@ export class LoginPage implements OnInit {
         }
       );
     }
+  }
+
+  // this method used to login with facebook
+
+  loginWithFacebook() {
+      this.socialAuthService.facebookAuth().then(()=>{
+        this.router.navigateByUrl("detail");
+      });
+  }
+
+  // this method used to login with google
+
+  loginWithGoogle() {
+    this.socialAuthService.googleAuth().then(()=>{
+      this.router.navigateByUrl("detail");
+    });
   }
 }

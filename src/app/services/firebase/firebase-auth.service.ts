@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
+import { Observable, Observer } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
@@ -48,5 +49,32 @@ export class FirebaseAuthService {
 
   resetPassword(email: string): Promise<void> {
     return this.fireAuth.auth.sendPasswordResetEmail(email);
+  }
+
+  // This method used for facebook login
+
+  public facebookLogin(token) {
+    const facebookCredential = firebase.auth.FacebookAuthProvider.credential(token);
+
+    return new Observable((observer: Observer<any>) => {
+      this.fireAuth.auth.signInWithCredential(facebookCredential).then((data) => {
+        observer.next(data);
+      }).catch((error) => {
+        observer.error(error);
+      });
+    });
+  }
+
+  //This method used for googlr login
+  public googleLogin(token) {
+    const googleCredential = firebase.auth.GoogleAuthProvider.credential(null, token);
+
+    return new Observable((observer: Observer<any>) => {
+      this.fireAuth.auth.signInWithCredential(googleCredential).then((data) => {
+        observer.next(data);
+      }).catch((error) => {
+        observer.error(error);
+      });
+    });
   }
 }

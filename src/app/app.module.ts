@@ -14,6 +14,11 @@ import firebaseConfig from "./services/firebase/firebase-config";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
+//plugins
+
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,7 +32,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Facebook,
+    GooglePlus
   ],
   bootstrap: [AppComponent]
 })
