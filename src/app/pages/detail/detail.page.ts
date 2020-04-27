@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseAuthService } from 'src/app/services/firebase/firebase-auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPage implements OnInit {
 
-  constructor() { }
+  constructor( 
+    private firebaseAuthService: FirebaseAuthService,
+    private navCtrl: NavController
+    ) { }
 
-  ngOnInit() {
+  ngOnInit(
+   
+  ) {
   }
 
+  logout(){
+   this.firebaseAuthService.logoutUser().then(()=>{
+     this.navCtrl.navigateRoot('');
+   })   
+  }
 }

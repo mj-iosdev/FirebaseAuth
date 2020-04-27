@@ -2,7 +2,7 @@ import { FirebaseAuthService } from "./../../services/firebase/firebase-auth.ser
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { LoadingController, AlertController } from "@ionic/angular";
+import { LoadingController, AlertController, NavController } from "@ionic/angular";
 import { SocialAuthService } from 'src/app/services/social-auth/social-auth.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private socialAuthService: SocialAuthService
+    private socialAuthService: SocialAuthService,
+    private navCtrl : NavController
   ) {
     this.loginForm = this.formBuilder.group({
       email: ["", Validators.compose([Validators.required, Validators.email])],
@@ -55,7 +56,7 @@ export class LoginPage implements OnInit {
       this.firebaseAuthService.loginUser({ email, password }).then(
         () => {
           this.loading.dismiss().then(() => {
-            this.router.navigateByUrl("detail");
+            this.navCtrl.navigateRoot("detail");
           });
         },
         error => {
@@ -74,11 +75,17 @@ export class LoginPage implements OnInit {
     }
   }
 
+  // this method used yo login with phonenumber
+
+ loginWithPhonenumber(){
+  this.navCtrl.navigateForward('phone-auth');
+ }
+
   // this method used to login with facebook
 
   loginWithFacebook() {
       this.socialAuthService.facebookAuth().then(()=>{
-        this.router.navigateByUrl("detail");
+        this.navCtrl.navigateRoot("detail");
       });
   }
 
@@ -86,7 +93,7 @@ export class LoginPage implements OnInit {
 
   loginWithGoogle() {
     this.socialAuthService.googleAuth().then(()=>{
-      this.router.navigateByUrl("detail");
+      this.navCtrl.navigateRoot("detail");
     });
   }
 }

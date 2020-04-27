@@ -65,7 +65,8 @@ export class FirebaseAuthService {
     });
   }
 
-  //This method used for googlr login
+  //This method used for google login
+
   public googleLogin(token) {
     const googleCredential = firebase.auth.GoogleAuthProvider.credential(null, token);
 
@@ -76,5 +77,22 @@ export class FirebaseAuthService {
         observer.error(error);
       });
     });
+  }
+
+  // This method used for varify OTP
+  varifyOTP(code: string, verificationId: string) {
+
+    return new Observable((observer: Observer<any>) => {
+
+      const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+      this.fireAuth.auth.signInAndRetrieveDataWithCredential(credential).then((data) => {
+
+        observer.next(data);
+        observer.complete();
+      }).catch((error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    })
   }
 }

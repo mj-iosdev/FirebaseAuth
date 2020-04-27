@@ -53,9 +53,29 @@ This project was built using [AngularFire](https://github.com/angular/angularfir
 
     -  ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 
+## Phone number authentication with firebase
+
+1. Enable phone number authentication
+
+## Resolve conflict between google-plus and firebase-authentication plugin
+
+* Android Platform 
+1. Add google-service.json file 
+   path : platforms/android/app/google-services.json
+
+2. Add following plugins
+- ionic cordova plugin add cordova-plugin-androidx
+- ionic cordova plugin add cordova-plugin-androidx-adapter
+
+* IOS Platform : 
+=> Add GoogleService-info.plist in Xcode 
+  Path : MyApp/resources/GoogleService-info.plist
+
+
 ## To do
 
 - [x] Add Authentication with Email and Password
 - [x] Add Authentication with Facebook
 - [x] Add Authentication with Google
+- [x] Add Authentication with Phone number
 - [ ] Add Authentication with Twitter

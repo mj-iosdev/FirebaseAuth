@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Otp Varification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="recaptcha-container"></div>
+  
+  <div class="ion-padding"></div>
+  <div class="container-element">
+    <ion-item>
+      <ion-label position="stacked">
+        Phone number
+      </ion-label>
+        <ion-input mode="md" name="phone" type="tel" placeholder="Your phone number" [(ngModel)]="phoneNumber">
+        </ion-input>
+    </ion-item>
+
+    <div class="theme-square-button">
+      <ion-button mode="ios" text-bold expand="block" (click)="sendVarificationCode()">Send
+      </ion-button>
+    </div>
+  </div>
+
+
+</ion-content>

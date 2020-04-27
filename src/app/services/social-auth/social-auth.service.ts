@@ -5,6 +5,7 @@ import { FirebaseAuthService } from '../firebase/firebase-auth.service';
 import { take } from 'rxjs/operators';
 import { Platform } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class SocialAuthService {
     private facebook : Facebook,
     private googlePlus: GooglePlus,
     private uiService: UiService,
-    private firebaseAuthService: FirebaseAuthService
+    private firebaseAuthService: FirebaseAuthService,
+    private firebaseAuthentication: FirebaseAuthentication
     ) { }
 
   // Facebook plugin authentication
@@ -67,7 +69,7 @@ export class SocialAuthService {
 
       // Here attach your webclient id 
       this.googlePlus.login({
-        'webClientId': '<Web_client_id>',     
+        'webClientId': '<Web_client_id>',   
         'offline': false
       }).then((res) => {
         if (res)
@@ -97,6 +99,27 @@ export class SocialAuthService {
       resolve();
       this.dismissLoader()
     }, (error) => this.dismissLoader());
+  }
+
+  // This method used for varify phonenumber
+
+  varifyPhoneNumber(phonenumber) {
+    return new Promise((resolve,reject)=>{
+      this.showLoader('Varify phonenumber login...').then(() => {
+ 
+        this.firebaseAuthentication.verifyPhoneNumber(phonenumber,30000).then((data) => {
+          console.log('data',data);
+          this.dismissLoader();
+          if (data) 
+                resolve(data);
+          else
+            this.uiService.showToaster('Something wrong!');
+        }).catch((error) => {
+          this.dismissLoader();
+          this.uiService.showToaster(error);
+        });
+      })
+    })
   }
 
   showLoader(msg) {

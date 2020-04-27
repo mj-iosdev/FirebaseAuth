@@ -27,6 +27,14 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'phone-auth',
+    loadChildren: () => import('./phone-auth/phone-auth.module').then( m => m.PhoneAuthPageModule)
+  },
+  {
+    path: 'otp-varification',
+    loadChildren: () => import('./otp-varification/otp-varification.module').then( m => m.OtpVarificationPageModule)
   }
 ];
 

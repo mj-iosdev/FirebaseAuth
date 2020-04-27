@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Otp Varification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding"></div>
+  <div class="container-element">
+
+    <div> {{phoneNumber}} </div>
+    <div class="ion-padding-top ion-padding-bottom">
+
+      <ion-item>
+        <ion-label position="stacked">
+          Varification code
+        </ion-label>
+        <ion-input mode="md" name="code" type="tel" placeholder="Your varification code" [(ngModel)]="code"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button mode="ios" text-bold expand="block" (click)="varify()">Varify </ion-button>
+    <ion-button mode="ios" text-bold expand="block" (click)="resend()">Resend OTP</ion-button>
+  </div>
+</ion-content>
